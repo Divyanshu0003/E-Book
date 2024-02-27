@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .signup-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Style for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        /* Style for the overlay background */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .modal form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal input, .modal button {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .modal button {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 600px) {
+            .signup-container {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Signup Container -->
+<div class="signup-container">
+    <h2>Signup</h2>
+    <form id="signupForm">
+        <input type="text" id="username" name="username" placeholder="Username" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required>
+        <button type="button" onclick="openModal()">Signup</button>
+    </form>
+</div>
+
+<!-- The Modal -->
+<div id="signupModal" class="modal">
+    <!-- Close button -->
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <!-- Form inside the modal -->
+    <form id="modalForm">
+        <label for="modalUsername">Username:</label>
+        <input type="text" id="modalUsername" name="modalUsername" required>
+
+        <label for="modalPassword">Password:</label>
+        <input type="password" id="modalPassword" name="modalPassword" required>
+
+        <label for="modalEmail">Email:</label>
+        <input type="email" id="modalEmail" name="modalEmail" required>
+
+        <label for="modalMobile">Mobile Number:</label>
+        <input type="tel" id="modalMobile" name="modalMobile" required>
+
+        <button type="button" onclick="signup()">Signup</button>
+    </form>
+</div>
+
+<!-- The overlay background -->
+<div id="overlay" class="overlay" onclick="closeModal()"></div>
+
+<!-- JavaScript to handle modal functionality and validation -->
+<script>
+    function openModal() {
+        document.getElementById('signupModal').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('signupModal').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
+
+    function signup() {
+        // Validate the modal form before submitting
+        if (validateModalForm()) {
+            // Handle signup logic here
+            alert('Signup successful!');
+            closeModal();
+        } else {
+            alert('Please fill in all fields in the modal form.');
+        }
+    }
+
+    function validateModalForm() {
+        var modalUsername = document.getElementById('modalUsername').value;
+        var modalPassword = document.getElementById('modalPassword').value;
+        var modalEmail = document.getElementById('modalEmail').value;
+        var modalMobile = document.getElementById('modalMobile').value;
+
+        // Add your validation logic here
+        if (modalUsername === '' || modalPassword === '' || modalEmail === '' || modalMobile === '') {
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+</body>
+</html>

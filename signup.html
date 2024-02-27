@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sign Up | By Code Info</title>
+  <style>
+    body {
+  background-color: #344a72;
+  font-family: "Roboto", sans-serif;
+}
+
+.signup-box {
+  width: 360px;
+  height:400px;
+  margin: auto;
+  background-color: white;
+  border-radius: 3px;
+}
+
+h1 {
+  text-align: center;
+  padding-top: 15px;
+}
+
+h4 {
+  text-align: center;
+}
+
+form {
+  width: 300px;
+  margin-left: 20px;
+}
+
+form label {
+  display: flex;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+form input {
+  width: 100%;
+  padding: 7px;
+  border: none;
+  border: 1px solid gray;
+  border-radius: 6px;
+  outline: none;
+}
+
+input[type="button"] {
+  width: 320px;
+  height: 35px;
+  margin-top: 20px;
+  border: none;
+  background-color: #49c1a2;
+  color: white;
+  font-size: 18px;
+}
+
+p {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 15px;
+}
+
+.para-2 {
+  text-align: center;
+  color: white;
+  font-size: 15px;
+  margin-top: -10px;
+}
+
+.para-2 a {
+  color: #49c1a2;
+}
+    /* Your CSS styles here */
+  </style>
+</head>
+<body>
+  <div class="signup-box">
+    <h1>Sign Up</h1>
+    <h4>It's free and only takes a minute</h4>
+    <form id="registrationForm" action="signup.php" method="post">
+      <input type="text" id="name" name="name" placeholder="Your Name" required class="input-field">
+      <input type="email" id="email" name="email" placeholder="Your Email" required class="input-field">
+      <input type="password" id="Password" name="Password" placeholder="Password" required class="input-field">
+      <input type="password" id="Confirm-Password" name="Confirm-Password" placeholder="Confirm Password" required class="input-field">
+      <span id="passwordError" class="error"></span>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  <script>
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+      var password = document.getElementById('Password').value;
+      var confirmPassword = document.getElementById('Confirm-Password').value;
+      var passwordError = document.getElementById('passwordError');
+
+      if (password !== confirmPassword) {
+        passwordError.innerHTML = 'Please check your password ';
+        event.preventDefault(); // Prevent form submission
+      } else {
+        passwordError.innerHTML = ''; // Clear any previous error messages
+      }
+    });
+  </script>
+  <p class="para-2">
+    Already have an account? <a href="login.html">Login here</a>
+  </p>
+</body>
+</html>
